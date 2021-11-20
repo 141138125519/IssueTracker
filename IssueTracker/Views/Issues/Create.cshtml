@@ -1,0 +1,117 @@
+﻿@model IssueTracker.Models.Issue
+
+@{
+    ViewData["Title"] = "Create";
+
+    // get username
+    String defaultReportedBy;
+    if (Context.User.Identity.IsAuthenticated)
+    {
+        defaultReportedBy = Context.User.Identity.Name;
+    }
+    else
+    {
+        defaultReportedBy = "default user name";
+    }
+
+    DateTime currentTime;
+    currentTime = System.DateTime.Now;
+}
+
+<h1>New Issue</h1>
+
+<hr />
+<!-- original code keep for now, just in case?
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IssueName" class="control-label"></label>
+                <input asp-for="IssueName" class="form-control" />
+                <span asp-validation-for="IssueName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IssueDetail" class="control-label"></label>
+                <input asp-for="IssueDetail" class="form-control" />
+                <span asp-validation-for="IssueDetail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstReported" class="control-label"></label>
+                <input asp-for="FirstReported" class="form-control" value="@DateTime.Now" type="datetime" readonly="@(true)"/>
+                <span asp-validation-for="FirstReported" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" value="Reporting"/>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReportedBy" class="control-label"></label>
+                <input asp-for="ReportedBy" class="form-control" value="@defaultReportedBy"/>
+                <span asp-validation-for="ReportedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+-->
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-5">
+            <div class="form-group">
+                <label asp-for="IssueName" class="control-label"></label>
+                <input asp-for="IssueName" class="form-control" />
+                <span asp-validation-for="IssueName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" value="Reporting" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10">
+            <div class="form-group">
+                <label asp-for="IssueDetail" class="control-label"></label>
+                <textarea asp-for="IssueDetail" class="form-control" rows="10"></textarea>
+                <span asp-validation-for="IssueDetail" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            <div class="form-group">
+                <label asp-for="ReportedBy" class="control-label"></label>
+                <input asp-for="ReportedBy" class="form-control" value="@defaultReportedBy" />
+                <span asp-validation-for="ReportedBy" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="form-group">
+                <label asp-for="FirstReported" class="control-label"></label>
+                <input asp-for="FirstReported" class="form-control" value="@DateTime.Now" type="datetime" readonly="@(true)" />
+                <span asp-validation-for="FirstReported" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
