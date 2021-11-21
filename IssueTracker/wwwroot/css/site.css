@@ -72,3 +72,19 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.navbar {
+    background-color: lightslategrey !important;
+    border-color: slategray !important; 
+}
+.navbar-light .navbar-brand {
+    color: white;
+}
+.text-dark {
+    color: white !important;
+}
+
+/* this does not work */
+table {
+    color: white !important;
+}
