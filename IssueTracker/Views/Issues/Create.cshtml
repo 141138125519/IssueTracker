@@ -77,6 +77,22 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-5">
+            <div class="form-group">
+                <label asp-for="IssuePriority" class="control-label"></label>
+                <input asp-for="IssuePriority" class="form-control" />
+                <span asp-validation-for="IssuePriority" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="form-group">
+                <label asp-for="IssueProjectLocation" class="control-label"></label>
+                <input asp-for="IssueProjectLocation" class="form-control" />
+                <span asp-validation-for="IssueProjectLocation" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-10">
             <div class="form-group">
                 <label asp-for="IssueDetail" class="control-label"></label>

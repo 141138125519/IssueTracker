@@ -11,6 +11,8 @@ namespace IssueTracker.Models
         public DateTime FirstReported { get; set; }
         public String Status { get; set; }
         public String ReportedBy { get; set; }
+        public String IssueProjectLocation { get; set; }
+        public int IssuePriority { get; set; }
 
         public Issue()
 		{
