@@ -9,6 +9,7 @@ namespace IssueTracker.Models
         public String IssueName { get; set; }
         public String IssueDetail { get; set; }
         public DateTime FirstReported { get; set; }
+        public DateTime LastUpdated { get; set; }
         public String Status { get; set; }
         public String ReportedBy { get; set; }
         public String IssueProjectLocation { get; set; }
