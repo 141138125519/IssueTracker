@@ -70,7 +70,7 @@ namespace IssueTracker.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IssueName,IssueDetail,FirstReported,Status,ReportedBy")] Issue issue)
+        public async Task<IActionResult> Create([Bind("Id,IssueName,IssueDetail,FirstReported,LastUpdated,Status,ReportedBy,IssueProjectLocation,IssuePriority")] Issue issue)
         {
             if (ModelState.IsValid)
             {
@@ -104,7 +104,7 @@ namespace IssueTracker.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IssueName,IssueDetail,FirstReported,Status,ReportedBy")] Issue issue)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IssueName,IssueDetail,FirstReported,LastUpdated,Status,ReportedBy,IssueProjectLocation,IssuePriority")] Issue issue)
         {
             if (id != issue.Id)
             {
