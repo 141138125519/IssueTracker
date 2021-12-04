@@ -20,6 +20,14 @@ namespace IssueTracker.Controllers
             _context = context;
         }
 
+        // GET: Home
+        public async Task<IActionResult> Home()
+        {
+            var issue = GetMostRecentIssue();
+            
+            return View(issue);
+        }
+
         // GET: Issues
         public async Task<IActionResult> Index()
         {
@@ -168,6 +176,12 @@ namespace IssueTracker.Controllers
         private bool IssueExists(int id)
         {
             return _context.Issue.Any(e => e.Id == id);
+        }
+
+        // Does this method work? or is this even how I should go about this?
+        public Issue GetMostRecentIssue()
+        {
+            return _context.Issue.FromSqlRaw("SELECT * FROM dbo.Issue WHERE FirstReported=(SELECT MAX(FirstReported) FROM dbo.Issue)").First();
         }
     }
 }

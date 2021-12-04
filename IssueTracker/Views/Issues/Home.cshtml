@@ -1,0 +1,52 @@
+﻿@model IssueTracker.Models.Issue
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Looking for Issues?</p>
+</div>
+
+<h1>Highlights</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+            </td>
+            <td>
+                Issue Name
+            </td>
+            <td>
+                First Reported
+            </td>
+            <td>
+                Status
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                Most Recently Created
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@Model.Id">@Html.DisplayFor(model => model.IssueName)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.FirstReported)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Status)
+            </td>
+        </tr>
+        <!--
+        <tr>
+            <td>
+                Most Recent Updated
+            </td>
+        </tr>
+        -->
+    </tbody>
+</table>
