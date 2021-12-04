@@ -23,9 +23,9 @@ namespace IssueTracker.Controllers
         // GET: Home
         public async Task<IActionResult> Home()
         {
-            var issue = GetMostRecentIssue();
+            //var issue = GetMostRecentIssue();
             
-            return View(issue);
+            return View( _context.Issue.AsQueryable());
         }
 
         // GET: Issues

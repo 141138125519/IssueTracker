@@ -1,7 +1,10 @@
-﻿@model IssueTracker.Models.Issue
+﻿@model IQueryable<IssueTracker.Models.Issue>
 
 @{
     ViewData["Title"] = "Home Page";
+
+    Issue mostRecentIssue = Model.OrderBy(issue => issue.FirstReported).First();
+    Issue mostRecentUpdate = Model.OrderBy(issue => issue.LastUpdated).First();
 }
 
 <div class="text-center">
@@ -22,6 +25,9 @@
                 First Reported
             </td>
             <td>
+                Last Updated
+            </td>
+            <td>
                 Status
             </td>
         </tr>
@@ -31,22 +37,39 @@
             <td>
                 Most Recently Created
             </td>
+
             <td>
-                <a asp-action="Details" asp-route-id="@Model.Id">@Html.DisplayFor(model => model.IssueName)</a>
+                <a asp-action="Details" asp-route-id="@mostRecentIssue.Id">@mostRecentIssue.IssueName</a>
             </td>
             <td>
-                @Html.DisplayFor(model => model.FirstReported)
+                @mostRecentIssue.FirstReported
             </td>
             <td>
-                @Html.DisplayFor(model => model.Status)
+                @mostRecentIssue.LastUpdated
+            </td>
+            <td>
+                @mostRecentIssue.Status
             </td>
         </tr>
-        <!--
+        
         <tr>
             <td>
                 Most Recent Updated
             </td>
+
+            <td>
+                <a asp-action="Details" asp-route-id="@mostRecentUpdate.Id">@mostRecentUpdate.IssueName</a>
+            </td>
+            <td>
+                @mostRecentUpdate.FirstReported
+            </td>
+            <td>
+                @mostRecentUpdate.LastUpdated
+            </td>
+            <td>
+                @mostRecentUpdate.Status
+            </td>
         </tr>
-        -->
+        
     </tbody>
 </table>
