@@ -1,10 +1,11 @@
-﻿@model IQueryable<IssueTracker.Models.Issue>
+﻿@model IEnumerable<IssueTracker.Models.Issue>
 
 @{
     ViewData["Title"] = "Home Page";
 
-    Issue mostRecentIssue = Model.OrderBy(issue => issue.FirstReported).First();
-    Issue mostRecentUpdate = Model.OrderBy(issue => issue.LastUpdated).First();
+
+    Issue mostRecentIssue = (Issue)ViewData["MostRecentIssue"];
+    Issue mostRecentUpdate = (Issue)ViewData["MostRecentUpdate"];
 }
 
 <div class="text-center">
@@ -51,7 +52,7 @@
                 @mostRecentIssue.Status
             </td>
         </tr>
-        
+
         <tr>
             <td>
                 Most Recent Updated
@@ -70,6 +71,5 @@
                 @mostRecentUpdate.Status
             </td>
         </tr>
-        
     </tbody>
 </table>

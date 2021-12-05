@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using IssueTracker.Data;
 using IssueTracker.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics;
 
 namespace IssueTracker.Controllers
 {
@@ -23,9 +24,14 @@ namespace IssueTracker.Controllers
         // GET: Home
         public async Task<IActionResult> Home()
         {
-            //var issue = GetMostRecentIssue();
-            
-            return View( _context.Issue.AsQueryable());
+            Issue MostRecentIssue = GetMostRecentIssue();
+            Issue MostRecentlyUpdated = GetMostRecentlyUpdated();
+            ViewData["MostRecentIssue"] = MostRecentIssue;
+            ViewData["MostRecentUpdate"] = MostRecentlyUpdated;
+
+            //Debug.WriteLine(MostRecentlyUpdated.ToString());
+
+            return View();
         }
 
         // GET: Issues
@@ -182,6 +188,11 @@ namespace IssueTracker.Controllers
         public Issue GetMostRecentIssue()
         {
             return _context.Issue.FromSqlRaw("SELECT * FROM dbo.Issue WHERE FirstReported=(SELECT MAX(FirstReported) FROM dbo.Issue)").First();
+        }
+
+        public Issue GetMostRecentlyUpdated()
+        {
+            return _context.Issue.FromSqlRaw("SELECT * FROM dbo.Issue WHERE LastUpdated=(SELECT MAX(LastUpdated) FROM dbo.Issue)").First();
         }
     }
 }
